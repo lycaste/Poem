@@ -25,7 +25,7 @@ public class TwoStreamsJoin {
 
         KeyedStream<OrderEvent, String> orderStream = env
                 .fromElements(
-                        new OrderEvent("order_1", "pay", 1616497937786L))
+                        new OrderEvent("order_1", "pay", System.currentTimeMillis()))
                 .assignTimestampsAndWatermarks(new BoundedOutOfOrdernessTimestampExtractor<OrderEvent>(Time.minutes(10)) {
                     @Override
                     public long extractTimestamp(OrderEvent element) {
@@ -36,7 +36,7 @@ public class TwoStreamsJoin {
 
         KeyedStream<PayEvent, String> payStream = env
                 .fromElements(
-                        new PayEvent("order_2", "weixin", 1616497937786L)
+                        new PayEvent("order_2", "weixin", System.currentTimeMillis())
                 )
                 .assignTimestampsAndWatermarks(new BoundedOutOfOrdernessTimestampExtractor<PayEvent>(Time.minutes(5)) {
                     @Override
