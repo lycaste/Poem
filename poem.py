@@ -18,7 +18,15 @@ public class TwoStreamsJoin {
 
 
 
+
     public static void main(String[] args) throws Exception {
+
+
+
+
+
+
+
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
         env.setParallelism(1);
